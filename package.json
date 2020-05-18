@@ -1,0 +1,19 @@
+{
+  "name": "sd2020a-final-project",
+  "version": "1.0.0",
+  "description": "This is the final project for SD-20201",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvlopez9811/SD2020A-final-project.git"
+  },
+  "author": "RamosQuinteroCoralVarela <dvlopez9811@gmail.com> (alejandraRamos,ManuelCoral1998,squintero14,dvlopez9811)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvlopez9811/SD2020A-final-project/issues"
+  },
+  "homepage": "https://github.com/dvlopez9811/SD2020A-final-project#readme"
+}
