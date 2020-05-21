@@ -30,26 +30,13 @@
                 </div>
 
             </div>
-            <!-- LIST -->
-<!--            <div class="col-md-7">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Nombre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i = 0; i < peoples.length; i++) { %>
-                            <tr> 
-                                <td> <%= i + 1 %></td>
-                                <td> <%= peoples[i].name %></td>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-                
-            </div>//-->
+            <div class="row">
+                <% person.forEach(function(person, index) { %>
+                    <div class="panel-footer small">
+                        <p>$ <%= person.name %>
+                    </div>
+                <% }) %>
+            </div>
         </div>
     </div>
 </body>
