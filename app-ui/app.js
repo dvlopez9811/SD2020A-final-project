@@ -15,6 +15,9 @@ app.set('views', __dirname + '/views/');
 // This tells Express out of which directory to serve static assets like CSS and images
 app.use(express.static(__dirname + '/public'));
 
+const bodyParser = require('body-parser'); 
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
+app.use(express.json());       // to support JSON-encoded bodies
 
 app.get('/', function(req, res){
   request
@@ -34,25 +37,12 @@ app.get('/', function(req, res){
   })
 
   app.post('/add', function (req, res) {
-    console.log(req.body)
     request
     .post('http://'+backendHost+':3000/add')
     .set('Content-Type', 'application/json')
-    .query({name:'nuel'})
-    .set('X-API-Key', 'foobar')
-    .end(function(err, data) {
-      if(data==undefined){
-        res.status(404).send({});
-      } else {
-        if(data.status == 403){
-          res.send(403, '403 Forbidden');
-        } else {
-          res.redirect('/')
-        }
-      }
-    })
+    .query(req.body)
+    .then(res.redirect('/'))
   });
     
-   // res.redirect('/');
-//app.post()
+
 module.exports = app.listen(3030);
