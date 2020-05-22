@@ -5,8 +5,26 @@ services:
   app-ui:
     build: app-ui
     scale: 2
+    links: 
+      - rest-api
 
   proxy:
     build: proxy
     ports:
       - 8080:8080
+  
+  mongo:
+    container_name: mongo
+    image: mongo:4.2.6
+    expose: 
+      - 27017
+    ports:
+      - 27017:27017
+
+  rest-api:
+    build: rest-api
+    depends_on: [mongo]
+    links:
+      - mongo
+  
+  

@@ -3,7 +3,7 @@
 // Declare our dependencies
 var express = require('express');
 var request = require('superagent');
-var backendHost = "localhost";
+var backendHost = "sd2020a-final-project_rest-api_1";
 // Create our express app
 var app = express();
 
@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bo
 app.use(express.json());       // to support JSON-encoded bodies
 
 app.get('/', function(req, res){
+  console.log("Resolviendo solicitud")
   request
     .get('http://'+backendHost+':3000/')
     .end(function(err, data) {
