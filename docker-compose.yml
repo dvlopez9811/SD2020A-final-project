@@ -1,0 +1,12 @@
+---
+version: '2.3'
+
+services:
+  app-ui:
+    build: app-ui
+    scale: 2
+
+  proxy:
+    build: proxy
+    ports:
+      - 8080:8080

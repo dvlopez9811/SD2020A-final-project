@@ -15,7 +15,7 @@ Andres David Varela (@dvlopez9811)
 
 ### Prerequisitos
 
-- Tener instalado Docker-compose. Se puede seguir estas [instrucciones de instalación](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) </br>
+- Tener instalado Docker-compose. Se puede seguir estas [instrucciones de instalación.](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) </br>
 
 
 Docker Compose es una herramienta para construir y coordinar aplicaciones de contenedores múltiples. Utiliza un archivo YAML para definir e iniciar diferentes contenedores y cualquier relación entre ellos. </br>
