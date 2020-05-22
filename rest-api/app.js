@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connecting to db 
-mongoose.connect('mongodb://localhost:27017/ourdb', { useNewUrlParser: true })
+mongoose.connect('mongodb://mongo:27017/ourdb', { useNewUrlParser: true })
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
 
