@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/dvlopez9811/SD2020A-final-project/issues"
   },
-  "homepage": "https://github.com/dvlopez9811/SD2020A-final-project#readme"
+  "homepage": "https://github.com/dvlopez9811/SD2020A-final-project#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "http-status-codes": "^1.4.0",
+    "mocha": "^7.1.2"
+  },
+  "dependencies": {
+    "superagent": "^5.2.2",
+    "superagent-promise": "^1.1.0"
+  }
 }
