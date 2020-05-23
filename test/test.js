@@ -4,22 +4,38 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-//Get 
-it('Consume GET Service', async () => {
-    const response = await agent.get('http://localhost:3000/');
+describe('Api Test', () => {
+  const query = {
+    name: 'John'
+  };
+
+//Get Front
+it('Consume GET Front Service', async () => {
+    const response = await agent.get('http://localhost:3030/');
+    
   
     expect(response.status).to.equal(statusCode.OK);
-    expect(response.body).to.have.property('origin');
+    expect(response.type).to.equal('text/html');
   });
 
 //Post 
-it('Consume POST Service with query parameters', async () => {
-   const query = {
-     name: 'Manuel',
-   };
-   const response = await agent.get('http://localhost:3000/add').query(query);
+it('Consume POST Back Service with query parameters', async () => {
+   
+   const response = await agent.post('http://localhost:3000/add').query(query).end( function(err,res){
+    
+    expect(res.status).to.equal(statusCode.OK);
 
-   expect(response.status).to.equal(statusCode.OK);
-   expect(response.body.args).to.eql(query);
+    });
   });
 
+//GET Back  
+it('Consume GET Back Service', async () => {
+   const response = await agent.get('http://localhost:3000/');
+   console.log(response.body)
+   expect(response.status).to.equal(statusCode.OK);
+   expect(response.body).to.not.equal('');
+   expect(response.body[0].name).to.equal(query.name);
+
+   //expect(response.body).to.have.property('origin');
+ });
+});
