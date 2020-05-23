@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
 router.post('/add', async (req, res) => {
     const person = new Person(req.query);
     await person.save();
+    res.json(person)
 });
 
 module.exports = router;
