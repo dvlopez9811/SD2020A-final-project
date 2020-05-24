@@ -12,21 +12,22 @@ const Person = require('../models/person');
  *      responses:
  *          '200':
  *              description: Respuesta exitosa
- *              content:
+ *              definitions:
+ *                 ArrayOfUsers:
+ *                   type: array
+ *                   items:
+ *                      type: object
+ *                      properties:
+ *                         id:
+ *                           type: integer
+ *                         name:
+ *                           type: string
+ *              examples:
  *                  application/json:
- *                      schema:
- *                          ArrayOfUsers:
- *                              type: array
- *                              items:
- *                                  type: object
- *                                  properties:
- *                                      id:
- *                                          type: integer
- *                                      name:
- *                                          type: string
- *                              example:
- *                                  - id: 2333458458354
- *                                    name: Job
+ *                        - id: 2333458458354
+ *                          name: Job
+ *                        - id: 1233345845822
+ *                          name: Smith
  */
 router.get('/', async (req, res) => {
     const peoples = await Person.find();
@@ -41,24 +42,32 @@ router.get('/', async (req, res) => {
  *      description: Inserta un usuario en la base de datos
  *      requestBody:
  *          description: Usuario para agregar a la base de datos
- *          content:
- *                  application/json:
- *                      schema:
- *                          type: string
- *          required: true
+ *      parameters:
+ *         - in: query
+ *           name: nombre
+ *           required: true
+ *           schema:
+ *              type: string
+ *           description: El nombre del usuario
  *      responses:
- *          "201":
+ *          "200":
  *              description: Usuario creado con éxito
- *              content:
+  *              definitions:
+ *                 ArrayOfUsers:
+ *                   type: array
+ *                   items:
+ *                      type: object
+ *                      properties:
+ *                         id:
+ *                           type: integer
+ *                         name:
+ *                           type: string
+ *              examples:
  *                  application/json:
- *                      schema:
- *                          type: integer
+ *                        - id: 2333458458354
+ *                          name: Job
  *          default:
  *              description: Error inesperado
- *              content:
- *                  application/json:
- *                      schema:
- *                          type: integer
  */
 router.post('/add', async (req, res) => {
     const person = new Person(req.query);
