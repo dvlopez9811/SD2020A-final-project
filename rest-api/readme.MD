@@ -15,7 +15,7 @@ Para la documentación del API-REST se utilizará Swagger UI Express, este módu
 `const swaggerJsDoc = require('swagger-jsdoc');`
 
 3. Configurar Swagger-UI:
-
+```
  const swaggerOptions = {
     swaggerDefinition: {
         info: {
@@ -29,7 +29,7 @@ Para la documentación del API-REST se utilizará Swagger UI Express, este módu
     },
     apis: ["app.js"]
 }
-
+```
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
