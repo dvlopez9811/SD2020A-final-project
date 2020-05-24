@@ -26,7 +26,7 @@ it('Consume GET Front Service', async () => {
   ```
 ## 2. Prueba consumiendo servicio POST del backend
 
-En esta prueba se verifica que el servidor del backend este arriba 
+En esta prueba se verifica que el servidor del backend este arriba.
 
 ```javascript
 it('Consume POST Back Service with query parameters', async () => {
@@ -38,7 +38,7 @@ it('Consume POST Back Service with query parameters', async () => {
 ```
 ## 3. Prueba consumiendo servicio GET del back
 
-En esta prueba se verifica que el servidor del backend este arriba, que el body de la respuesta no este vacío y que la propiedad name del body de la respuesta corresponda a la propiedad name de la prueba
+En esta prueba se verifica que el servidor del backend este arriba, que el body de la respuesta no este vacío y que la propiedad name del body de la respuesta corresponda a la propiedad name de la prueba.
 
 ```javascript
 it('Consume GET Back Service', async () => {
