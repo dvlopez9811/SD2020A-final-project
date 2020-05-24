@@ -1,5 +1,6 @@
+### Resumen de la aplicación
 
-
+Para la realización del API-REST (Backend) se 
 
 ### Instalación de swagger
 
@@ -45,6 +46,7 @@ Una vez realizados los pasos anteriores, se procede a documentar cada endpoint. 
    * El nombre del endpoint.  
    * El o los métodos de petición HTTP que se desea documentar `GET` `POST` `PUT` `DELETE`  
    * Seguido de un conjunto de etiquetas con el cual se puede formar la documentación (entre los mas relevantes para la realización de este proyecto se encuentran: `description`, `responses`, `parameters` y `requestBody`)  
+
 A manera de ejemplo se muestra la documentación del endpoint `GET`  
 ```
 /**
