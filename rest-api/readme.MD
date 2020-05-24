@@ -28,7 +28,7 @@ npm i swagger-jsdoc swagger-ui-express --save-dev
 
 ```javascript
 const swaggerUi = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');`
+const swaggerJsDoc = require('swagger-jsdoc');
 ```
 3. Configurar Swagger-UI:
 ```javascript
