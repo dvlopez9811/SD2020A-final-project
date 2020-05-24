@@ -17,6 +17,8 @@ Andrés David Varela López (@dvlopez9811)
 
 - Tener instalado Docker-compose. Se puede seguir estas [instrucciones de instalación.](https://www.digitalocean.com/community/tutorials/como-instalar-docker-compose-en-ubuntu-18-04-es) </br>
 
+
+### Desarrollo
 Docker Compose es una herramienta para construir y coordinar aplicaciones de contenedores múltiples. Utiliza un archivo YAML para definir e iniciar diferentes contenedores y cualquier relación entre ellos. </br>
 
 Se puede usar el Dockerfile como un bloque de construcción para Docker Compose.</br>
@@ -45,8 +47,6 @@ Después, se especifica servicio por servicio.
 - proxy:
 
 - networks:
--
-
 
 ### Información construida con base en:
 - https://github.com/ofstudio/docker-compose-scale-example/blob/master/docker-compose.yaml
