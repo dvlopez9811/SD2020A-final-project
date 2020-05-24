@@ -1,9 +1,28 @@
 const path = require('path');
 const express = require('express');
+const app = express();
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const app = express();
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            version: '0.0.1',
+            title: "API-REST Usuarios",
+            description: "API-REST para la gestión de usuarios",
+            contact: {
+                name: "Coral-Quintero-Ramos-Varela"
+            },
+            servers: ["http://localhost:3000"]
+        }
+    },
+    apis: ["./routes/index.js"]
+}
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // connecting to db 
 var connectWithRetry = function() {
@@ -22,7 +41,7 @@ connectWithRetry();
 const indexRoutes = require('./routes/index');
 
 // settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 
 // middlewares
 app.use(morgan('dev'));
