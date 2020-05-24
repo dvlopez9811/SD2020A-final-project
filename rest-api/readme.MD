@@ -30,8 +30,11 @@ Para la documentación del API-REST se utilizará Swagger UI Express, este módu
     apis: ["app.js"]
 }
 ```
+
+```
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+```
 
 4. Documentación de cada endpoint:
 
