@@ -23,7 +23,7 @@ it('Consume POST Back Service with query parameters', async () => {
    
    const response = await agent.post('http://localhost:3000/add').query(query).end( function(err,res){
     
-    expect(res.status).to.equal(statusCode.OK);
+    expect(response.status).to.equal(statusCode.OK);
 
     });
   });
