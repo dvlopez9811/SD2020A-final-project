@@ -10,11 +10,62 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 ```
 Seguido de esto se realizó: 
-   * La configuración de Swagger (La instalación para ello se encuentra en el siguiente apartado).  
-   * La conexión con la base de datos Mongo.  
-   * Indicar la ruta donde se encuentran los endpoints.  
-   * Ejecutar la aplicación.  
+   * La configuración de Swagger (La instalación de este framework se encuentra en el siguiente apartado).  
+     En el siguiente fragmento de código se puede evidenciar: la versión en la que se encuentra el endpoint, el título, una descripción, los autores del proyecto, el servidor que respondera y por último la ruta donde se encuentran todos los endpoints.  
+
+     ```javascript
+     const swaggerOptions = {
+         swaggerDefinition: {
+            info: {
+                version: '0.0.1',
+                title: "API-REST Usuarios",
+                description: "API-REST para la gestión de usuarios",
+                contact: {
+                    name: "Coral-Quintero-Ramos-Varela"
+                },
+                servers: ["http://localhost:3000"]
+            }
+         },
+         apis: ["./routes/index.js"]
+     }
    
+     const swaggerDocs = swaggerJsDoc(swaggerOptions);
+     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+     ```
+   
+   * La conexión con la base de datos Mongo.  
+     En el siguiente código se puede ver como se realiza la conexión con la base de datos y en caso de que ocurra un error, procedera a reintentar la conexión luego de un segundo.   
+     ```javascript
+     var connectWithRetry = function() {
+         return mongoose.connect('mongodb://mongo:27017/ourdb', { 
+             if (err) {
+                console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
+                setTimeout(connectWithRetry, 1000);
+             }
+        })
+        .then(db => console.log('Db connected'))
+        .catch(err => console.log(err));
+     };
+     connectWithRetry();
+     ```
+   * Indicar la ruta donde se encuentran los endpoints.  
+     ```javascript
+     const indexRoutes = require('./routes/index');
+     ```
+   * Ejecutar la aplicación.  
+     ```javascript
+     app.set('port', 3000);
+
+     app.use(morgan('dev'));
+     app.use(express.urlencoded({extended: false}));
+
+     app.use('/', indexRoutes);
+
+     // starting the server
+     app.listen(app.get('port'), ()=>{
+         console.log(`Server on port ${app.get('port')}`);
+     });
+     ```
 ## Instalación de swagger
 
 Para la documentación del API-REST se utilizará Swagger UI Express, este módulo permite servir documentos API generados automáticamente por swagger-ui desde express, basados ​​en un archivo swagger.json. El resultado es una documentación para su API alojada desde su servidor API a través de una ruta.
