@@ -11,7 +11,7 @@ describe('Api Test', () => {
 
 //Get Front
 it('Consume GET Front Service', async () => {
-    const response = await agent.get('http://localhost:3030/');
+    const response = await agent.get('http://localhost:8080/');
     
   
     expect(response.status).to.equal(statusCode.OK);
