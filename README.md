@@ -155,6 +155,14 @@ script:
   - npm test
 ```
 
+### Healthcheck
+
+Por último, en cada uno de los Dockerfile del Proxy, Front-end y REST-API se agrega la instrucción `HEALTCHECK`.
+
+La instrucción HEALTHCHECK le dice a Docker cómo probar un contenedor para verificar que todavía esté funcionando. Esto puede detectar casos como un servidor web que está atascado en un bucle infinito y no puede manejar nuevas conexiones, aunque el proceso del servidor aún se esté ejecutando.
+
+Cuando un contenedor tiene una verificación de salud especificada, tiene un estado de `heal` además de su estado normal. Este estado está en `starting` inicialmente. Cada vez que se aprueba un control de salud, se vuelve `healthy` (en cualquier estado en el que se encontraba anteriormente). Después de un cierto número de fallas consecutivas, se vuelve `unhealthy`.
+
 ### Evidencias del funcionamiento
 
 ### Información construida con base en:
@@ -163,3 +171,4 @@ script:
 - https://www.youtube.com/watch?v=BSKox1DEsQo
 - https://hub.docker.com/_/mongo
 - https://www.federico-toledo.com/travis-ci-para-integracion-continua/
+- https://docs.docker.com/engine/reference/builder/
