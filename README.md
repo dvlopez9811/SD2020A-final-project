@@ -13,7 +13,7 @@ Andrés David Varela López (@dvlopez9811)
 
 ## Documentación
 
-### Prerequisitos
+### Prerrequisitos
 
 - Tener instalado Docker-compose. Se puede seguir estas [instrucciones de instalación.](https://www.digitalocean.com/community/tutorials/como-instalar-docker-compose-en-ubuntu-18-04-es) </br>
 
