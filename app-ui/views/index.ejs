@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title> TProyecto Final SD2020-1 </title>
+    <title> Proyecto Final SD2020-1 </title>
 
     <!-- BOOTSTRAP 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -30,12 +30,15 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="column">
+                <h2> Datos Ingresados</h2>
+                <ul class="list-group list-group-flush">
                 <% person.forEach(function(person, index) { %>
-                    <div class="panel-footer small">
-                        <p>$ <%= person.name %>
-                    </div>
+                    <li class="list-group-item">
+                        <p><%= person.name %>
+                    </li>
                 <% }) %>
+                </ul>
             </div>
         </div>
     </div>
