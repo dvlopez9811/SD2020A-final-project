@@ -23,14 +23,16 @@ Si las solicitudes llegan a una carepta raíz "/", se redirige a la aplicación 
 Al final, el archivo debe quedar así:
 
 `proxy.conf`
->`server {`</br>
->`listen 8080;`</br>
->`resolver 127.0.0.11 valid=5s;`</br>
->`set $upstream http://app-ui:3030;`</br>
->`location / {`</br>
->>`proxy_pass $upstream;`</br>
->`}`</br>
-`}`</br>
+```
+server {
+    listen 8080;
+    resolver 127.0.0.11 valid=5s;
+    set $upstream http://app-ui:3030;
+    location / {
+        proxy_pass $upstream;
+    }
+}
+```
 
 ## 3. Dockerfile
 
@@ -42,12 +44,13 @@ Por último, se copia al contenedor la configuración: `COPY proxy.conf /etc/ngi
 
 Al final, el archivo debe quedar así:
 
-`FROM nginx:alpine
+```
+FROM nginx:alpine
 
 RUN rm /etc/nginx/conf.d/*
 
-COPY proxy.conf /etc/nginx/conf.d` </br>
-
+COPY proxy.conf /etc/nginx/conf.d
+```
 ## Información construida con base en:
 - https://www.youtube.com/watch?v=BSKox1DEsQo
 - https://cloudbuilder.in/blogs/2017/11/26/docker-compose-nginx-nodejs/
