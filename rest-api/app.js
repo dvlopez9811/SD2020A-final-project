@@ -27,13 +27,15 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // connecting to db 
 var connectWithRetry = function() {
     return mongoose.connect('mongodb://mongo:27017/ourdb', { 
-        if (err) {
-            console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
-            setTimeout(connectWithRetry, 1000);
-        }
     })
     .then(db => console.log('Db connected'))
-    .catch(err => console.log(err));
+    .catch(function(err) {
+        console.log(err);
+        if (err) {
+            console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
+            setTimeout(connectWithRetry, 5000);
+        }
+    });
 };
 connectWithRetry();
 
