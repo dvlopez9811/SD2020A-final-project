@@ -1,30 +1,43 @@
 ---
-version: '2.3'
-
+version: '2.4'
 services:
+
+  mongo:
+    container_name: mongo
+    image: mongo:4.2.6
+    ports:
+      - 27017:27017
+    networks: 
+      - app-network
+
+  rest-api:
+    build: rest-api
+    ports: 
+      - 3000:3000
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
   app-ui:
     build: app-ui
     scale: 2
-    links: 
+    networks: 
+      - app-network
+    depends_on: 
       - rest-api
 
   proxy:
     build: proxy
     ports:
       - 8080:8080
+    depends_on: 
+      - app-ui
+    networks: 
+      - app-network
   
-  mongo:
-    container_name: mongo
-    image: mongo:4.2.6
-    expose: 
-      - 27017
-    ports:
-      - 27017:27017
-
-  rest-api:
-    build: rest-api
-    depends_on: [mongo]
-    links:
-      - mongo
+networks:
+  app-network:
+    driver: bridge
   
   

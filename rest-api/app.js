@@ -6,9 +6,17 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connecting to db 
-mongoose.connect('mongodb://mongo:27017/ourdb', { useNewUrlParser: true })
+var connectWithRetry = function() {
+    return mongoose.connect('mongodb://mongo:27017/ourdb', { 
+        if (err) {
+            console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
+            setTimeout(connectWithRetry, 1000);
+        }
+    })
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
+};
+connectWithRetry();
 
 //importing routes
 const indexRoutes = require('./routes/index');

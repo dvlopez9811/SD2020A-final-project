@@ -3,7 +3,7 @@
 // Declare our dependencies
 var express = require('express');
 var request = require('superagent');
-var backendHost = "sd2020a-final-project_rest-api_1";
+var backendHost = "rest-api";
 // Create our express app
 var app = express();
 
