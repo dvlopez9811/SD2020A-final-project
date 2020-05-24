@@ -179,6 +179,8 @@ El comando final queda así:
 HEALTHCHECK --interval=30s --timeout=30s --start-period=1s --retries=5 \     
   CMD curl -f http://localhost:3000/ || exit 1
 ```
+Para revisar el estado, se ejecuta el siguiente comando: </br>
+`docker inspect --format '{{json .State.Health.Status}}' ContainerID`
 
 ### Evidencias del funcionamiento
 
