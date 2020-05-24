@@ -1,7 +1,20 @@
 ### Resumen de la aplicación
 
-Para la realización del API-REST (Backend) se 
-
+Para la realización del API-REST (Backend) se necesitaron las siguientes dependencias:  
+```javascript
+const path = require('path');
+const express = require('express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+```
+Seguido de esto se realizó: 
+   * La configuración de Swagger (La instalación para ello se encuentra en el siguiente apartado).  
+   * La conexion con la base de datos Mongo.  
+   * Indicar la ruta donde se encuentran los endpoints.  
+   * Ejecutar la aplicación.  
+   
 ### Instalación de swagger
 
 Para la documentación del API-REST se utilizará Swagger UI Express, este módulo permite servir documentos API generados automáticamente por swagger-ui desde express, basados ​​en un archivo swagger.json. El resultado es una documentación para su API alojada desde su servidor API a través de una ruta.
