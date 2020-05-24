@@ -34,7 +34,7 @@ Seguido de esto se realizó:
      ```
    
    * La conexión con la base de datos Mongo.  
-     En el siguiente código se puede ver como se realiza la conexión con la base de datos y en caso de que ocurra un error, procedera a reintentar la conexión luego de un segundo.   
+     En el siguiente código se puede ver cómo se realiza la conexión con la base de datos y en caso de que ocurra un error, procederá a reintentar la conexión luego de un segundo.   
      ```javascript
      var connectWithRetry = function() {
          return mongoose.connect('mongodb://mongo:27017/ourdb', { 
