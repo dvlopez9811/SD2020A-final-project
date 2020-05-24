@@ -30,7 +30,7 @@ it('Consume POST Back Service with query parameters', async () => {
 
 //GET Back  
 it('Consume GET Back Service', async () => {
-   const response = await agent.get('http://localhost:3000/');
+   const response = await agent.get('http://sd2020a-final-project_rest-api:3000/');
    console.log(response.body)
    expect(response.status).to.equal(statusCode.OK);
    expect(response.body).to.not.equal('');
