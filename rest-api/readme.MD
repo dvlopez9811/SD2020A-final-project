@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 ```
 Seguido de esto se realizó: 
    * La configuración de Swagger (La instalación para ello se encuentra en el siguiente apartado).  
-   * La conexion con la base de datos Mongo.  
+   * La conexión con la base de datos Mongo.  
    * Indicar la ruta donde se encuentran los endpoints.  
    * Ejecutar la aplicación.  
    
