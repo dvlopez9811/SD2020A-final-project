@@ -11,7 +11,7 @@ describe('Api Test', () => {
 
 //Get Front
 it('Consume GET Front Service', async () => {
-    const response = await agent.get('http://app-ui:3030/');
+    const response = await agent.get('http://localhost:3030/');
     
   
     expect(response.status).to.equal(statusCode.OK);
@@ -21,7 +21,7 @@ it('Consume GET Front Service', async () => {
 //Post 
 it('Consume POST Back Service with query parameters', async () => {
    
-   const response = await agent.post('http://rest-api:3000/add').query(query).end( function(err,res){
+   const response = await agent.post('http://localhost:3000/add').query(query).end( function(err,res){
     
     expect(res.status).to.equal(statusCode.OK);
 
@@ -30,7 +30,7 @@ it('Consume POST Back Service with query parameters', async () => {
 
 //GET Back  
 it('Consume GET Back Service', async () => {
-   const response = await agent.get('http://app-ui:3000/');
+   const response = await agent.get('http://localhost:3000/');
    console.log(response.body)
    expect(response.status).to.equal(statusCode.OK);
    expect(response.body).to.not.equal('');
