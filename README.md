@@ -63,7 +63,7 @@ mongo:
 
 - rest-api:
 
-[Documentación del proceso de creación y configuración del API-REST](https://github.com/dvlopez9811/SD2020A-final-project/tree/development/rest-api) 
+[Documentación del proceso de creación y configuración del API-REST y documentación con Swagger](https://github.com/dvlopez9811/SD2020A-final-project/tree/development/rest-api) 
 
 Como el entorno del API-REST se creó en un Dockerfile, se especifica en la carpeta donde se encuentra éste: `build: rest-api`
 
