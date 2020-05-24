@@ -129,7 +129,7 @@ Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open S
 
 Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo en los builds, puesto que toda la infraestructura está orquestada por éste:
 
-- Como variable de entorno se guarda la versión deseada para realizar el docker-compose: `DOCKER_COMPOSE_VERSION=1.25."
+- Como variable de entorno se guarda la versión deseada para realizar el docker-compose: `DOCKER_COMPOSE_VERSION=1.25.`
 - En `before_install` se colocan los comandos para realizar la instalación de docker-compose.
 - Una vez realizado esto, se instalan las dependencias necesarias para ejecutar las pruebas: `npm install`
 - Por último, se especifica el script a ejecutar, el cual es `docker-compose up` con la opción -d para ejecutarlo en background y `npm test` para ejecutar las pruebas.
