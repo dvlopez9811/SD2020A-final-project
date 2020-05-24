@@ -91,5 +91,6 @@ A manera de ejemplo se muestra la documentación del endpoint `GET`
 ```
 
 ### Información construida con base en:
+- https://mongoosejs.com/docs/
 - https://youtu.be/apouPYPh_as
 - https://www.npmjs.com/package/swagger-ui-express
