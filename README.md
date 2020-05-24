@@ -63,11 +63,12 @@ mongo:
 
 - rest-api:
 
+[Documentación del proceso de creación y configuración del API-REST](https://github.com/dvlopez9811/SD2020A-final-project/tree/development/rest-api) </br>
 Como el entorno del API-REST se creó en un Dockerfile, se especifica en la carpeta donde se encuentra éste: `build: rest-api`
 
 Se mapea el puerto 3000 del host al puerto 3000 del contenedor: `ports: -3000:3000`.
 
-Se crea una dependencia con el servicio de mongo para que no se cree el api-rest antes que la base de datos: `depends_on: -mongo`
+Se crea una dependencia con el servicio de mongo para que no se cree el api-rest antes que la base de datos: `depends_on: - mongo`
 ```
 rest-api:
     build: rest-api
@@ -80,6 +81,10 @@ rest-api:
 ```
 - app-ui:
 
+[Documentación del proceso de creación y configuración del front-end] (https://github.com/dvlopez9811/SD2020A-final-project/blob/development/app-ui/readme.MD) </br>
+Aquí la configuración es diferente, no se epecifica a qué puerto se mapea del host puesto que se van a tener varios contenedores escuchando por el mismo puerto 3030 sin mapearse a un puerto específico del host, puesto que se accede a ellos mediante el proxy. En este caso, se crean dos contenedores, respondiendo al requerimiento de tener al menos dos réplicas del front-end: `scale: 2`
+
+Se agrega una dependencia, para que no se cree el front-end sin haber creado antes el API-REST: `depends_on: rest-api`
 ```
 app-ui:
     build: app-ui
@@ -89,8 +94,11 @@ app-ui:
     depends_on: 
       - rest-api
 ```
-
 - proxy:
+
+[Documentación del proceso de creación y configuración del proxy](https://github.com/dvlopez9811/SD2020A-final-project/blob/development/proxy/readme.MD)
+
+Por último, se crea el proxy, no hay configuración adicional que antes no se haya explicado.
 ```
 proxy:
     build: proxy
