@@ -163,7 +163,26 @@ La instrucción HEALTHCHECK le dice a Docker cómo probar un contenedor para ver
 
 Cuando un contenedor tiene una verificación de salud especificada, tiene un estado de `heal` además de su estado normal. Este estado está en `starting` inicialmente. Cada vez que se aprueba un control de salud, se vuelve `healthy` (en cualquier estado en el que se encontraba anteriormente). Después de un cierto número de fallas consecutivas, se vuelve `unhealthy`.
 
+Admite las siguientes opciones:
+
+--interval = <interval>: el intervalo de tiempo entre dos comprobaciones de estado. El valor predeterminado es 30 segundos.
+
+--timeout = <interval>: el tiempo de espera para ejecutar el comando de comprobación de estado. La comprobación de estado falla si se excede el tiempo de espera. El valor predeterminado es 30 segundos.
+
+--retries = <número de veces>: el estado del contenedor se considera no saludable si la comprobación de estado falla continuamente durante un número específico de veces. El valor predeterminado es 3.
+
+--start-period = <intervalo>: el tiempo de inicialización del inicio de la aplicación. La comprobación de estado fallida durante el inicio no se cuenta. El valor predeterminado es 0 segundos.
+  
+El comando final queda así:
+
+```
+HEALTHCHECK --interval=30s --timeout=30s --start-period=1s --retries=5 \     
+  CMD curl -f http://localhost:3000/ || exit 1
+```
+
 ### Evidencias del funcionamiento
+
+### Problemas encontrados y acciones efectuadas para su solución
 
 ### Información construida con base en:
 - https://github.com/ofstudio/docker-compose-scale-example/blob/master/docker-compose.yaml
