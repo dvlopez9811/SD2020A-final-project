@@ -1,5 +1,5 @@
-### Resumen de la aplicación
-------
+## Resumen de la aplicación
+
 Para la realización del API-REST (Backend) se necesitaron las siguientes dependencias:  
 ```javascript
 const path = require('path');
@@ -15,8 +15,8 @@ Seguido de esto se realizó:
    * Indicar la ruta donde se encuentran los endpoints.  
    * Ejecutar la aplicación.  
    
-### Instalación de swagger
-------
+## Instalación de swagger
+
 Para la documentación del API-REST se utilizará Swagger UI Express, este módulo permite servir documentos API generados automáticamente por swagger-ui desde express, basados ​​en un archivo swagger.json. El resultado es una documentación para su API alojada desde su servidor API a través de una ruta.
 
 1. Instalar Swagger UI Express a través de npm y guardar la dependencia: </br>
