@@ -4,6 +4,10 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
+before(done => {
+  server = app.listen(3000, done);
+});
+
 describe('Api Test', () => {
   const query = {
     name: 'John'
