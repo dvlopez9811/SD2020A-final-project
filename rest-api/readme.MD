@@ -7,13 +7,15 @@ Para la documentación del API-REST se utilizará Swagger UI Express, este módu
 
 1. Instalar Swagger UI Express a través de npm y guardar la dependencia: </br>
 
-`npm i swagger-jsdoc swagger-ui-express --save-dev`
+```javascript
+npm i swagger-jsdoc swagger-ui-express --save-dev
+```
+2. Realizar la configuración inicial en app.js
 
-2. Relaizar la configuración inicial en app.js
-
-`const swaggerUi = require('swagger-ui-express');` </br>
-`const swaggerJsDoc = require('swagger-jsdoc');`
-
+```javascript
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');`
+```
 3. Configurar Swagger-UI:
 ```javascript
  const swaggerOptions = {
@@ -31,15 +33,47 @@ Para la documentación del API-REST se utilizará Swagger UI Express, este módu
 }
 ```
 
-```
+```javascript
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 ```
 
-4. Documentación de cada endpoint:
-
-
-
+4. Documentación de cada endpoint:  
+Una vez realizados los pasos anteriores, se procede a documentar cada endpoint. Para ello es necesario usar:  
+   * Los caracteres `/** ... */` para comentar multiples lineas.  
+   * La etiqueta `@swagger`  
+   * El nombre del endpoint.  
+   * El o los métodos de petición HTTP que se desea documentar `GET` `POST` `PUT` `DELETE`  
+   * Seguido de un conjunto de etiquetas con el cual se puede formar la documentación (entre los mas relevantes para la realización de este proyecto se encuentran: `description`, `responses`, `parameters` y `requestBody`)  
+A manera de ejemplo se muestra la documentación del endpoint `GET`  
+```
+/**
+ * @swagger
+ * /:
+ *  get:
+ *      summary: Retorna una lista de todos los usuarios
+ *      description: Retorna una lista de todos los usuarios
+ *      responses:
+ *          '200':
+ *              description: Respuesta exitosa
+ *              definitions:
+ *                 ArrayOfUsers:
+ *                   type: array
+ *                   items:
+ *                      type: object
+ *                      properties:
+ *                         id:
+ *                           type: integer
+ *                         name:
+ *                           type: string
+ *              examples:
+ *                  application/json:
+ *                        - id: 2333458458354
+ *                          name: Job
+ *                        - id: 1233345845822
+ *                          name: Smith
+ */
+```
 
 ### Información construida con base en:
 - https://youtu.be/apouPYPh_as
