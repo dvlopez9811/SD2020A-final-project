@@ -82,7 +82,7 @@ rest-api:
 ```
 - app-ui:
 
-[Documentación del proceso de creación y configuración del front-end] (https://github.com/dvlopez9811/SD2020A-final-project/blob/development/app-ui/readme.MD)
+[Documentación del proceso de creación y configuración del front-end](https://github.com/dvlopez9811/SD2020A-final-project/blob/development/app-ui/readme.MD)
 
 Aquí la configuración es diferente, no se epecifica a qué puerto se mapea del host puesto que se van a tener varios contenedores escuchando por el mismo puerto 3030 sin mapearse a un puerto específico del host, puesto que se accede a ellos mediante el proxy. En este caso, se crean dos contenedores, respondiendo al requerimiento de tener al menos dos réplicas del front-end: `scale: 2`
 
@@ -98,7 +98,7 @@ app-ui:
 ```
 - proxy:
 
-[Documentación del proceso de creación y configuración del proxy] (https://github.com/dvlopez9811/SD2020A-final-project/blob/development/proxy/readme.MD)
+[Documentación del proceso de creación y configuración del proxy](https://github.com/dvlopez9811/SD2020A-final-project/blob/development/proxy/readme.MD)
 
 Por último, se crea el proxy, no hay configuración adicional que antes no se haya explicado.
 ```
