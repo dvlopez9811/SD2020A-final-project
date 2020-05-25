@@ -21,6 +21,10 @@ Andrés David Varela López (@dvlopez9811)
 
 ## Documentación
 
+### Arquitectura de la solución:
+
+![Arquitecture](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/14_Arquitecture.png)
+
 ### Prerrequisitos
 
 - Tener instalado Docker-compose. Se puede seguir estas [instrucciones de instalación.](https://www.digitalocean.com/community/tutorials/como-instalar-docker-compose-en-ubuntu-18-04-es) </br>
