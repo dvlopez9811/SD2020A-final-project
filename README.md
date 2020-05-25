@@ -249,6 +249,7 @@ Por último, podemos verificar que se realizó todo el montaje con travis de nue
 ### Problemas encontrados y acciones efectuadas para su solución
 
 - Pruebas
+
 En la prueba donde se consume el servicio POST del backend se estaba presentado un error.
 Este error era causado, porque no se estaba retornando ningún objeto despues de agregar un nombre. Este problema se solucionó agregando la siguinete línea de código en el post del index.js del backend
 
