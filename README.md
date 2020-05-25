@@ -112,6 +112,8 @@ proxy:
       - app-network
 ```
 
+- Healthcheck 
+
 ### Travis CI
 
 Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open Source y de pago para proyectos privados. Se integra sin problemas con GitHub y automáticamente ejecuta el pipeline definido en cada push o pull requests. Testea y buildea aplicaciones escritas en Ruby, Node, Objective-C, Go, Java, C# y F#, entre otras (que corran en Linux).
@@ -182,7 +184,40 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=1s --retries=5 \
 Para revisar el estado, se ejecuta el siguiente comando: </br>
 `docker inspect --format '{{json .State.Health.Status}}' ContainerID`
 
+Además, como la base de datos no tiene un archivo Dockerfile, se configura el healtcheck en el docker-compose.
+
+```
+healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/ourdb --quiet 
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+```
+
 ### Evidencias del funcionamiento
+
+![Docker-compose --version](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/00_docker-compose-version.png)
+
+![Docker-compose --build](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/01_docker-compose-build.png)
+
+![Docker-compose --ps](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/02_docker-compose-ps.png)
+
+![Docker-compose --up](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/03_docker-compose-up.png)
+
+![Front-end up](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/04_front-end-up.png)
+
+![Proxy funcionando](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/05_proxy.png)
+
+![API-REST](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/06_rest-api.png)
+
+![Insertando valores](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/07_insertando-valores.png)
+
+![Healthcheck](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/08_healthcheck.png)
+
+![Travis](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/09_travis.png)
+
+![Build complete](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/10_build-complete.png)
 
 ### Problemas encontrados y acciones efectuadas para su solución
 
@@ -193,3 +228,4 @@ Para revisar el estado, se ejecuta el siguiente comando: </br>
 - https://hub.docker.com/_/mongo
 - https://www.federico-toledo.com/travis-ci-para-integracion-continua/
 - https://docs.docker.com/engine/reference/builder/
+- https://www.alibabacloud.com/help/doc-detail/58588.htm

@@ -38,7 +38,9 @@ server {
 
 Para crear nuestro balanceador de carga se utiliza nginx, un servidor web de código abierto y un servidor proxy inverso: `FROM nginx:alpine` </br>
 
-Lueugo, se elimina toda la configuración del servidor puesto qu se quiere colocar la configuración que se realizó en el paso anterior: `RUN rm /etc/nginx/conf.d/*` </br>
+Luego, se elimina toda la configuración del servidor puesto qu se quiere colocar la configuración que se realizó en el paso anterior: `RUN rm /etc/nginx/conf.d/*` </br>
+
+Después, se instala curl para poder ejecutar el healtcheck.
 
 Por último, se copia al contenedor la configuración: `COPY proxy.conf /etc/nginx/conf.d` </br>
 
@@ -49,7 +51,15 @@ FROM nginx:alpine
 
 RUN rm /etc/nginx/conf.d/*
 
+RUN apk add --update \
+    curl \
+    && rm -rf /var/cache/apk/*
+
 COPY proxy.conf /etc/nginx/conf.d
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=1s --retries=5 \
+    CMD curl -f http://localhost:8080/ || exit 1
+
 ```
 ## Información construida con base en:
 - https://www.youtube.com/watch?v=BSKox1DEsQo
