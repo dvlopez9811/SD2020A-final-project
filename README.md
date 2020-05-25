@@ -144,7 +144,8 @@ Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo e
 - Una vez realizado esto, se instalan las dependencias necesarias para ejecutar las pruebas: `npm install`
 - Por último, se especifica el script a ejecutar, el cual es `docker-compose up` con la opción -d para ejecutarlo en background y `npm test` para ejecutar las pruebas.
 
-Al final, el archvio de configuración quedará así:
+Al final, el archivo de configuración quedará así:
+
 `.travis.yml`
 
 ```
@@ -164,8 +165,6 @@ script:
   - docker-compose up -d
   - npm test
 ```
-
-### Healthcheckhe docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
 
 Por último, en cada uno de los Dockerfile del Proxy, Front-end y REST-API se agrega la instrucción `HEALTCHECK`.
 
@@ -259,6 +258,8 @@ res.json(person)
 - Red: los contenedores no se podían comunicar entre ellos por el nombre de los servicios, para ello, tocaba especificarle la dirección IPv4 del contenedor al que quería acceder o el nombre con el que se creaba. Para ello, la dirección fue crear una propia red para que, entre todos, pudieran resolver el nombre de cada contenedor identificado por el nombre del servicio.
 
 - Dependencias: algunos errores aparecían de vez en cuando entre la conexión de la base de datos y el API-REST, puesto que éste último intentaba conectarse a la base de datos cuando aún no se había configurado. La solución fue, primero, colocar en el docker-compose una dependencia del API-REST a la base de datos y, en la aplicación .js del API-REST colocar que siguiera intentando conectarse a la base de datos hasta que no lanzara ningún error.
+
+-API: La principal dificultad presentada en el desarrollo de la aplicación y el API, se presentó en la ejecución del método POST. Lo que sucedía era que en el API no se estaba recibiendo el objeto enviado por el endpoint '/add' del front-end. Después de hacer seguimiento y análisis de lo enviado por la respuesta en superagent, se determinó enviar el objeto en formato json mediante un query, y en el API se accede a esta propiedad para obtener el objeto enviado. 
 
 
 ### Información construida con base en:
