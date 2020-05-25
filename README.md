@@ -11,6 +11,14 @@ Alejandra Ramos Vélez (@alejandraRamos)
 
 Andrés David Varela López (@dvlopez9811)
 
+## Objetivos
+
+- Diseñar la arquitectura de un sistema distribuido que implemente un conjunto de microservicios, considerando las implicaciones técnicas asociadas con su escalabilidad, tolerancia a fallos y concurrencia, y las mejoras en el desempeño a través de la asignación o reasignación de los recursos y tareas.
+
+- Desplegar un sistema distribuido, teniendo en cuenta las estrategias de adminsitración de sus recursos consideradas en el diseño.
+
+- Gestionar el servicio distribuido, haciendo uso de herramientas de monitoreo y aprovisionamiento.
+
 ## Documentación
 
 ### Prerrequisitos
@@ -115,7 +123,7 @@ proxy:
 - Healthcheck 
 
 ### Travis CI
-
+he docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
 Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open Source y de pago para proyectos privados. Se integra sin problemas con GitHub y automáticamente ejecuta el pipeline definido en cada push o pull requests. Testea y buildea aplicaciones escritas en Ruby, Node, Objective-C, Go, Java, C# y F#, entre otras (que corran en Linux).
 
 1. Para configurar travis en el repositorio, se debe dar permisos a Travis para conectarse con el mismo. Para esto, se va las configuraciones del repositorio, hacer click sobre “Servicios” y seleccionar Travis-CI. Una vez allí seleccionar “Add to GitHub” y otorgar todos los permisos.
@@ -129,7 +137,7 @@ Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open S
 - `language: node_js`: Indica el lenguaje de programación.
 - `node_js: "8.10.0`: Versión del mismo.
 
-Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo en los builds, puesto que toda la infraestructura está orquestada por éste:
+Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo en los builds, puesto que toda la infraestructura está orquestada por éste:he docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
 
 - Como variable de entorno se guarda la versión deseada para realizar el docker-compose: `DOCKER_COMPOSE_VERSION=1.25.`
 - En `before_install` se colocan los comandos para realizar la instalación de docker-compose.
@@ -157,7 +165,7 @@ script:
   - npm test
 ```
 
-### Healthcheck
+### Healthcheckhe docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
 
 Por último, en cada uno de los Dockerfile del Proxy, Front-end y REST-API se agrega la instrucción `HEALTCHECK`.
 
@@ -173,7 +181,7 @@ Admite las siguientes opciones:
 
 --retries = <número de veces>: el estado del contenedor se considera no saludable si la comprobación de estado falla continuamente durante un número específico de veces. El valor predeterminado es 3.
 
---start-period = <intervalo>: el tiempo de inicialización del inicio de la aplicación. La comprobación de estado fallida durante el inicio no se cuenta. El valor predeterminado es 0 segundos.
+--start-period = <intervalo>: el tiempo de inihe docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.cialización del inicio de la aplicación. La comprobación de estado fallida durante el inicio no se cuenta. El valor predeterminado es 0 segundos.
   
 El comando final queda así:
 
@@ -197,25 +205,44 @@ healthcheck:
 
 ### Evidencias del funcionamiento
 
-![Docker-compose --version](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/00_docker-compose-version.png)
+Una vez instalado como prerrequisito docker-compose, verificamos su versión:
+
+![Docker-compose --version](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/00_docer-compose-version.png)
+
+En la carpeta raíz del proyecto, ejecutamos el comando `docker-compose build`, éste buscará todos los servicios que contienen la declaración build: y ejecutará una compilación docker para cada uno.
 
 ![Docker-compose --build](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/01_docker-compose-build.png)
 
+Verificamos:
 ![Docker-compose --ps](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/02_docker-compose-ps.png)
 
+Luego, se construye, (re) crea, inicia y se conecta a los ontenedores para cada servicio.
 ![Docker-compose --up](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/03_docker-compose-up.png)
 
+Una vez termina de realizar el `docker-compose up`, nuestro despliegue del sistema distribuidos estaria terminado. Para ello, ingresamos por `localhost:8080`, el cual es la URL de nuestro proxy que redirige a algún contenedor que contiene el front-end.
 ![Front-end up](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/04_front-end-up.png)
+
+Para verificar que realmente esté realizando un balanceo de carga, actualizamos la página y verificamos en los logs quién está resolviendo la solicitud, y, como se puede observar en la siguiente imagen, primero resuelve la solicitud app-ui_1 y luego app-ui_2.
 
 ![Proxy funcionando](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/05_proxy.png)
 
+Una vez verificado esto, verificamos que podamos ingresar datos a nuestra base de datos, mediante la conexión del API-REST:
+
 ![API-REST](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/06_rest-api.png)
+
+En los logs podemos evidenciar el endpoint:
 
 ![Insertando valores](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/07_insertando-valores.png)
 
+Normalmente, cuando los contenedores están arriba, en la columna 5 se muestran con un estado UP, pero, al agregarle las configuraciones de healthcheck a cada contenedor, nos muestra si está `healthy`o `unhealthy`:
+
 ![Healthcheck](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/08_healthcheck.png)
 
+Ahora, realizamos un Pull Request para verificar que Travis CI se encuentra configurado y activado en nuestro respositorio:
+
 ![Travis](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/09_travis.png)
+
+Por último, podemos verificar que se realizó todo el montaje con travis de nuestra arquitectura en contenedores y, además, pasaron las pruebas realizadas en la carpeta test:
 
 ![Build complete](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/10_build-complete.png)
 
