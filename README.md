@@ -259,7 +259,7 @@ res.json(person)
 
 - Dependencias: algunos errores aparecían de vez en cuando entre la conexión de la base de datos y el API-REST, puesto que éste último intentaba conectarse a la base de datos cuando aún no se había configurado. La solución fue, primero, colocar en el docker-compose una dependencia del API-REST a la base de datos y, en la aplicación .js del API-REST colocar que siguiera intentando conectarse a la base de datos hasta que no lanzara ningún error.
 
--API: La principal dificultad presentada en el desarrollo de la aplicación y el API, se presentó en la ejecución del método POST. Lo que sucedía era que en el API no se estaba recibiendo el objeto enviado por el endpoint '/add' del front-end. Después de hacer seguimiento y análisis de lo enviado por la respuesta en superagent, se determinó enviar el objeto en formato json mediante un query, y en el API se accede a esta propiedad para obtener el objeto enviado. 
+- API: La principal dificultad presentada en el desarrollo de la aplicación y el API, se presentó en la ejecución del método POST. Lo que sucedía era que en el API no se estaba recibiendo el objeto enviado por el endpoint '/add' del front-end. Después de hacer seguimiento y análisis de lo enviado por la respuesta en superagent, se determinó enviar el objeto en formato json mediante un query, y en el API se accede a esta propiedad para obtener el objeto enviado. 
 
 
 ### Información construida con base en:
