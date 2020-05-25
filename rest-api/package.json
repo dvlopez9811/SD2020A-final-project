@@ -1,0 +1,20 @@
+{
+  "name": "app-api",
+  "version": "1.0.0",
+  "description": "app api",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "RamosQuinteroCoralVarela <dvlopez9811@gmail.com> (alejandraRamos,ManuelCoral1998,squintero14,dvlopez9811)",
+  "license": "ISC",
+  "devDependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mocha": "^7.1.2",
+    "mongoose": "^5.9.15",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  }
+}

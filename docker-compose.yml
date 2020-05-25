@@ -1,0 +1,49 @@
+---
+version: '2.4'
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo:4.2.6
+    ports:
+      - 27017:27017
+    networks: 
+      - app-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/ourdb --quiet 
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  rest-api:
+    build: rest-api
+    ports: 
+      - 3000:3000
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  app-ui:
+    build: app-ui
+    scale: 2
+    networks: 
+      - app-network
+    depends_on: 
+      - rest-api
+
+  proxy:
+    build: proxy
+    ports:
+      - 8080:8080
+    depends_on: 
+      - app-ui
+    networks: 
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge
+  
+  
