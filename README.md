@@ -212,9 +212,6 @@ En la carpeta raíz del proyecto, ejecutamos el comando `docker-compose build`, 
 
 ![Docker-compose --build](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/01_docker-compose-build.png)
 
-Verificamos:
-![Docker-compose --ps](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/02_docker-compose-ps.png)
-
 Luego, se construye, (re) crea, inicia y se conecta a los ontenedores para cada servicio.
 ![Docker-compose --up](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/03_docker-compose-up.png)
 
