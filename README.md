@@ -245,6 +245,15 @@ Por último, podemos verificar que se realizó todo el montaje con travis de nue
 
 ![Build complete](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/10_build-complete.png)
 
+Adicional a esto, con la ayuda de Swagger, se realizó la documentación del API-REST, se puede consultar en /api-docs:
+
+![Swagger 1](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/11_rest-api.png)
+
+![Swagger 2](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/12-rest-api.png)
+
+![Swagger 3](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/13-rest-api.png)
+
+
 ### Problemas encontrados y acciones efectuadas para su solución
 
 - Pruebas: en la prueba donde se consume el servicio POST del backend se estaba presentado un error.
