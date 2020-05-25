@@ -248,14 +248,18 @@ Por último, podemos verificar que se realizó todo el montaje con travis de nue
 
 ### Problemas encontrados y acciones efectuadas para su solución
 
-- Pruebas
-
-En la prueba donde se consume el servicio POST del backend se estaba presentado un error.
+- Pruebas: en la prueba donde se consume el servicio POST del backend se estaba presentado un error.
 Este error era causado, porque no se estaba retornando ningún objeto despues de agregar un nombre. Este problema se solucionó agregando la siguinete línea de código en el post del index.js del backend
 
 ```javascript
 res.json(person)
 ```
+- Proxy: al utilizar una distribución alpine para realizarlo, no contaba con el comando curl, por lo que al realizar el HEALTHCHECK siempre se etiquetaba el contenedor como `unhealthy`. La solucion para ello fue buscar los comandos adecuados para realizar la instalación del mismo en el contenedor.
+
+- Red: los contenedores no se podían comunicar entre ellos por el nombre de los servicios, para ello, tocaba especificarle la dirección IPv4 del contenedor al que quería acceder o el nombre con el que se creaba. Para ello, la dirección fue crear una propia red para que, entre todos, pudieran resolver el nombre de cada contenedor identificado por el nombre del servicio.
+
+- Dependencias: algunos errores aparecían de vez en cuando entre la conexión de la base de datos y el API-REST, puesto que éste último intentaba conectarse a la base de datos cuando aún no se había configurado. La solución fue, primero, colocar en el docker-compose una dependencia del API-REST a la base de datos y, en la aplicación .js del API-REST colocar que siguiera intentando conectarse a la base de datos hasta que no lanzara ningún error.
+
 
 ### Información construida con base en:
 - https://github.com/ofstudio/docker-compose-scale-example/blob/master/docker-compose.yaml
