@@ -248,6 +248,13 @@ Por último, podemos verificar que se realizó todo el montaje con travis de nue
 
 ### Problemas encontrados y acciones efectuadas para su solución
 
+En la prueba donde se consume el servicio POST del backend se estaba presentado un error.
+Este error era causado, porque no se estaba retornando ningún objeto despues de agregar un nombre. Este problema se solucionó agregando la siguinete línea de código en el post del index.js del backend
+
+```javascript
+res.json(person)
+```
+
 ### Información construida con base en:
 - https://github.com/ofstudio/docker-compose-scale-example/blob/master/docker-compose.yaml
 - https://cloudbuilder.in/blogs/2017/11/26/docker-compose-nginx-nodejs/
