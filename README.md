@@ -35,14 +35,14 @@ Como se puede evidenciar el en repositorio de Github, se tienen 5 carpetas:</br>
 
 - app-ui: será el front-end de nuestra aplicación.
 - proxy: contienen la configuración del proxy en nginx.
-- rest-api: será el back-end que se usará en nuestra aplicación.
-- test: contiene los test del back/front end.
+- rest-api: será el api-rest que se usará en nuestra aplicación.
+- test: contiene los test del front-end y api-rest.
 
 Cada carpeta contiene un Dockerfile el cual especifica el aprovisionamiento de cada contenedor.
 
 ### docker-compose.yml
 
-Primero, se especifica la versión, se utiliza la versión 2.x para disponer de la opción scale, el cual permitirá configurar cuántos contenedores réplicas se tienen del front-end.
+Primero, se especifica la versión, se utiliza la versión 2.x para disponer de la opción scale, el cual permitirá configurar cuántos contenedores réplicas se desean tener del front-end.
 
 Después, se crea una red propia en la cual estarán los microservicios:
 ```
@@ -71,7 +71,7 @@ mongo:
 
 - rest-api:
 
-[Documentación del proceso de creación y configuración del API-REST y documentación con Swagger](https://github.com/dvlopez9811/SD2020A-final-project/tree/development/rest-api) 
+[Documentación del proceso de creación y configuración del API-REST y documentación con Swagger](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/rest-api/README.md) 
 
 Como el entorno del API-REST se creó en un Dockerfile, se especifica en la carpeta donde se encuentra éste: `build: rest-api`
 
@@ -90,7 +90,7 @@ rest-api:
 ```
 - app-ui:
 
-[Documentación del proceso de creación y configuración del front-end](https://github.com/dvlopez9811/SD2020A-final-project/blob/development/app-ui/readme.MD)
+[Documentación del proceso de creación y configuración del front-end](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/app-ui/README.md)
 
 Aquí la configuración es diferente, no se epecifica a qué puerto se mapea del host puesto que se van a tener varios contenedores escuchando por el mismo puerto 3030 sin mapearse a un puerto específico del host, puesto que se accede a ellos mediante el proxy. En este caso, se crean dos contenedores, respondiendo al requerimiento de tener al menos dos réplicas del front-end: `scale: 2`
 
@@ -106,7 +106,7 @@ app-ui:
 ```
 - proxy:
 
-[Documentación del proceso de creación y configuración del proxy](https://github.com/dvlopez9811/SD2020A-final-project/blob/development/proxy/readme.MD)
+[Documentación del proceso de creación y configuración del proxy](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/proxy/README.md)
 
 Por último, se crea el proxy, no hay configuración adicional que antes no se haya explicado.
 ```
@@ -123,7 +123,7 @@ proxy:
 - Healthcheck 
 
 ### Travis CI
-he docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
+
 Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open Source y de pago para proyectos privados. Se integra sin problemas con GitHub y automáticamente ejecuta el pipeline definido en cada push o pull requests. Testea y buildea aplicaciones escritas en Ruby, Node, Objective-C, Go, Java, C# y F#, entre otras (que corran en Linux).
 
 1. Para configurar travis en el repositorio, se debe dar permisos a Travis para conectarse con el mismo. Para esto, se va las configuraciones del repositorio, hacer click sobre “Servicios” y seleccionar Travis-CI. Una vez allí seleccionar “Add to GitHub” y otorgar todos los permisos.
@@ -137,7 +137,7 @@ Travis-CI es un sistema de Integración Continua, gratuita para proyectos Open S
 - `language: node_js`: Indica el lenguaje de programación.
 - `node_js: "8.10.0`: Versión del mismo.
 
-Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo en los builds, puesto que toda la infraestructura está orquestada por éste:he docker-compose up command aggregates the output of each container (essentially running docker-compose logs -f). When the command exits, all containers are stopped. Running docker-compose up -d starts the containers in the background and leaves them running.
+Lo siguiente que se realiza es configurar Docker-compose para poder utilizarlo en los builds, puesto que toda la infraestructura está orquestada por éste:
 
 - Como variable de entorno se guarda la versión deseada para realizar el docker-compose: `DOCKER_COMPOSE_VERSION=1.25.`
 - En `before_install` se colocan los comandos para realizar la instalación de docker-compose.
