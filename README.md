@@ -23,7 +23,7 @@ Andrés David Varela López (@dvlopez9811)
 
 ### Arquitectura de la solución:
 
-![Arquitecture](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/14_Arquitecture.png)
+![Arquitecture](https://github.com/dvlopez9811/SD2020A-final-project/blob/master/images/14_arquitecture.png)
 
 ### Prerrequisitos
 
